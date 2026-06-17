@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>G.M. Enterprises - Invoice App</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="tailwind.css">
     <style>
         *, *::before, *::after { box-sizing: border-box !important; }
         
@@ -445,7 +445,8 @@
                 <head>
                     <meta charset="UTF-8">
                     <title>Print Invoice - G.M. Enterprises</title>
-                    <script src="https://cdn.tailwindcss.com"><\/script>
+                    <base href="${window.location.href}">
+                    <link rel="stylesheet" href="tailwind.css">
                     <style>
                         *, *::before, *::after { box-sizing: border-box !important; }
                         @page { size: A4 portrait; margin: 8mm; }
@@ -504,40 +505,10 @@
                 <body class="p-2 antialiased">
                     ${invoiceContent}
                     <script>
-                        /*
-                         * Wait for Tailwind CDN to fully load AND apply all
-                         * utility classes before triggering print. A fixed
-                         * 350ms delay races against CDN latency and loses.
-                         * Instead we poll until the invoice element has its
-                         * expected computed width, then print.
-                         */
-                        function waitForTailwindAndPrint() {
-                            const el = document.getElementById('printable-invoice');
-                            if (!el) { window.print(); window.close(); return; }
-
-                            let attempts = 0;
-                            const MAX = 60; // up to 3 seconds (60 × 50ms)
-
-                            function check() {
-                                attempts++;
-                                const w = el.getBoundingClientRect().width;
-                                // Tailwind has applied flex/width classes when the
-                                // invoice is wider than 400px in a 900px window
-                                if (w > 400 || attempts >= MAX) {
-                                    window.print();
-                                    window.close();
-                                } else {
-                                    setTimeout(check, 50);
-                                }
-                            }
-                            check();
-                        }
-
-                        if (document.readyState === 'complete') {
-                            waitForTailwindAndPrint();
-                        } else {
-                            window.addEventListener('load', waitForTailwindAndPrint);
-                        }
+                        window.onload = function() {
+                            window.print();
+                            window.close();
+                        };
                     <\/script>
                 </body>
                 </html>

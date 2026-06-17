@@ -1,0 +1,24 @@
+{
+  "name": "invoice_test_withlogin_v13",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ansarigulmohd2009/Invoice_Test_WITHLogin_V13.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ansarigulmohd2009/Invoice_Test_WITHLogin_V13/issues"
+  },
+  "homepage": "https://github.com/ansarigulmohd2009/Invoice_Test_WITHLogin_V13#readme",
+  "dependencies": {
+    "tailwindcss": "^4.3.1"
+  }
+}
