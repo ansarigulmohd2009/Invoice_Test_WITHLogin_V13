@@ -343,7 +343,7 @@
                             </div>
                         </div>
 
-                        <div id="items-table-container" class="tally-border-b flex-grow flex flex-col relative" style="min-height:280px;">
+                        <div id="items-table-container" class="tally-border-b flex-grow flex flex-col relative">
                             <div class="absolute inset-0 flex pointer-events-none z-0">
                                 <div class="w-[8%] tally-border-r"></div>
                                 <div class="w-[42%] tally-border-r"></div>
@@ -448,7 +448,7 @@
                     <script src="https://cdn.tailwindcss.com"><\/script>
                     <style>
                         *, *::before, *::after { box-sizing: border-box !important; }
-                        @page { size: A4 portrait; margin: 10mm; }
+                        @page { size: A4 portrait; margin: 8mm; }
                         html, body {
                             background: #ffffff !important; color: #000000 !important;
                             font-family: ui-sans-serif, system-ui, sans-serif;
@@ -467,15 +467,27 @@
 
                         table, th, td { border-width: 1px !important; }
 
-                        /* Mirror the exact preview invoice sizing */
+                        /* Force invoice to fit exactly within one A4 page */
                         #printable-invoice {
                             width: 190mm !important;
                             max-width: 190mm !important;
-                            min-height: 277mm !important;
+                            height: 277mm !important;
+                            min-height: unset !important;
+                            max-height: 277mm !important;
                             margin: 0 auto !important;
                             box-shadow: none !important;
                             font-size: 11px !important;
                             line-height: 1.25 !important;
+                            overflow: hidden !important;
+                            display: flex !important;
+                            flex-direction: column !important;
+                        }
+
+                        /* Items area fills remaining space between header and footer */
+                        #items-table-container {
+                            flex-grow: 1 !important;
+                            min-height: unset !important;
+                            overflow: hidden !important;
                         }
 
                         /* Ensure ghost column dividers span full height in print */
